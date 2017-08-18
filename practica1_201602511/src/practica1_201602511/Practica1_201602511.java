@@ -15,9 +15,7 @@ public class Practica1_201602511 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        menu_201602511 principal = new menu_201602511();
-        principal.menu1();
-    }
-    
+     new Principal_201602511();
+    }  
 }
+
