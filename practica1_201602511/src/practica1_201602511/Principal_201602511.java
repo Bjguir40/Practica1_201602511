@@ -7,7 +7,6 @@ package practica1_201602511;
  */
 import java.util.Random;
 import java.util.Scanner;
-
 /**
  *
  * @author Byron G
@@ -17,6 +16,8 @@ public class Principal_201602511 {
     public Principal_201602511() {
         menu1();
     }
+    public int fila;
+    public int columna;
     String matriz1[][];
     String matriz01[][];
     String matriz2[][];
@@ -82,7 +83,7 @@ public class Principal_201602511 {
         System.out.println("NIVEL PRINCIPIANTE");
         for (int i = 0; i <= 3; i++) {
             for (int j = 0; j <= 3; j++) {
-                System.out.print(matriz01[i][j] + "  ");
+                System.out.print(matriz01[i][j] + " ");
 
             }
             System.out.println();
@@ -90,7 +91,7 @@ public class Principal_201602511 {
 
         for (int i = 0; i <= 3; i++) {
             for (int j = 0; j <= 3; j++) {
-                System.out.print(matriz1[i][j] + "  ");
+                System.out.print(matriz1[i][j] + " ");
 
             }
             System.out.println();
@@ -124,6 +125,7 @@ public class Principal_201602511 {
     }
 
     private void reiniciar1() {
+
         int t;
         matriz1 = new String[4][4];
         for (int i = 0; i < 4; i++) {
@@ -137,50 +139,104 @@ public class Principal_201602511 {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 matriz01[i][j] = " ";
+
             }
         }
         for (t = 0; t < 4; t++) { // NUMERO DE MINAS
-            int fila = rn.nextInt(3);
-            int columna = rn.nextInt(3);
+            fila = rn.nextInt(3);
+            columna = rn.nextInt(3);
             if (matriz01[fila][columna].equals("*")) {
                 t--;
             }
-
             matriz01[fila][columna] = "*";
         }
 
     }
-
-    private void voltear1() {
+  private void voltear1() {
         System.out.println("Ingrese una fila , columna");
-        Scanner lector1;
-        lector1 = new Scanner(System.in);
-        String coor = lector1.nextLine();
-        String[] coordenada = coor.split(",");
-        if (coordenada.length != 2) {
-            System.out.println("Ingrese coordenadas validas");
-        } else {
-            matriz1[Integer.parseInt(coordenada[0]) - 1][Integer.parseInt(coordenada[1]) - 1] = matriz01[Integer.parseInt(coordenada[0]) - 1][Integer.parseInt(coordenada[1]) - 1];
-        }
-        if (matriz1[Integer.parseInt(coordenada[0]) - 1][Integer.parseInt(coordenada[1]) - 1].equals("*")) {
-            System.out.println("Has perdido");
-            System.out.println("Las minas estaban en...");
-            for (int i = 0; i <= 3; i++) {
-                for (int j = 0; j <= 3; j++) {
-                    System.out.print(matriz01[i][j] + "  ");
+        try {
+            Scanner lector1;
+            lector1 = new Scanner(System.in);
+            String coor = lector1.nextLine();
+            String[] coordenada = coor.split(",");
+            if (coordenada.length != 2) {
+                System.out.println("Ingrese coordenadas validas");
+                
+            } else {
+                
+                int numero_a_mostrar;
+                numero_a_mostrar = 0;
 
+                int i = Integer.parseInt(coordenada[0]);
+                int j = Integer.parseInt(coordenada[1]);
+                
+                if (matriz1[i][j - 1] != null && matriz1[i][j - 1].equals("*")) {
+                    numero_a_mostrar++;
                 }
-                System.out.println();
+                if (matriz1[i][j + 1] != null && matriz1[i][j - 1].equals("*")) {
+                    numero_a_mostrar++;
+                }
+                if (matriz1[i + 1][j - 1] != null && matriz1[i][j - 1].equals("*")) {
+                    numero_a_mostrar++;
+                }
+                if (matriz1[i + 1][j + 1] != null && matriz1[i][j - 1].equals("*")) {
+                    numero_a_mostrar++;
+                }
+                if (matriz1[i - 1][j - 1] != null && matriz1[i][j - 1].equals("*")) {
+                    numero_a_mostrar++;
+                }
+                if (matriz1[i - 1][j + 1] != null && matriz1[i][j - 1].equals("*")) {
+                    numero_a_mostrar++;
+                }
+                if (matriz1[i - 1][j] != null && matriz1[i][j - 1].equals("*")) {
+                    numero_a_mostrar++;
+                }
+                if (matriz1[i + 1][j] != null && matriz1[i][j - 1].equals("*")) {
+                    numero_a_mostrar++;
+                }
+                matriz1[i][j] = Integer.toString(numero_a_mostrar); 
+
+                for (i = 0; i <= 3; i++) {
+		            for (j = 0; j <= 3; j++) {
+		                System.out.print(matriz1[i][j] + " ");
+
+		            }
+		            System.out.println();
+		        }
+
+		        for (i = 0; i <= 3; i++) {
+		            for (j = 0; j <= 3; j++) {
+		                System.out.print(matriz1[i][j] + " ");
+
+		            }
+		            System.out.println();
+		        }
+
             }
-            reiniciar1();
+            if (matriz1[Integer.parseInt(coordenada[0])][Integer.parseInt(coordenada[1])].equals("*")) {
+                System.out.println("!!!!HAS PERDIDO!!!");
+                System.out.println("Las minas estaban en...");
+                for (int i = 0; i <= 3; i++) {
+                    for (int j = 0; j <= 3; j++) {
+                        System.out.print(matriz01[i][j] + " ");
+
+                    }
+                    System.out.println();
+                }
+
+                reiniciar1();
+                principiante();
+            
+            } else {
+            }
             principiante();
-
-        } else {
+        } catch (Exception e) {
+            System.out.println("coordenada invalida");
+            voltear1();
         }
-        principiante();
-
     }
 
+  
     void intermedio() {
 
         System.out.println("NIVEL INTERMEDIO");
@@ -243,8 +299,8 @@ public class Principal_201602511 {
             }
         }
         for (t = 0; t < 8; t++) { // NUMERO DE MINAS
-            int fila = rn.nextInt(5);
-            int columna = rn.nextInt(5);
+            fila = rn.nextInt(5);
+            columna = rn.nextInt(5);
             if (matriz02[fila][columna].equals("*")) {
                 t--;
             }
@@ -256,32 +312,36 @@ public class Principal_201602511 {
 
     private void voltear2() {
         System.out.println("Ingrese una fila , columna");
-        Scanner lector2;
-        lector2 = new Scanner(System.in);
-        String coor = lector2.nextLine();
-        String[] coordenada = coor.split(",");
-        if (coordenada.length != 2) {
-            System.out.println("Ingrese coordenadas validas");
-        } else {
-            matriz2[Integer.parseInt(coordenada[0]) - 1][Integer.parseInt(coordenada[1]) - 1] = matriz02[Integer.parseInt(coordenada[0]) - 1][Integer.parseInt(coordenada[1]) - 1];
-        }
-        if (matriz2[Integer.parseInt(coordenada[0]) - 1][Integer.parseInt(coordenada[1]) - 1].equals("*")) {
-            System.out.println("Has perdido");
-            System.out.println("Las minas estaban en...");
-            for (int i = 0; i <= 5; i++) {
-                for (int j = 0; j <= 5; j++) {
-                    System.out.print(matriz02[i][j] + "  ");
-
-                }
-                System.out.println();
+        try {
+            Scanner lector2;
+            lector2 = new Scanner(System.in);
+            String coor = lector2.nextLine();
+            String[] coordenada = coor.split(",");
+            if (coordenada.length != 2) {
+                System.out.println("Ingrese coordenadas validas");
+            } else {
+                matriz2[Integer.parseInt(coordenada[0]) - 1][Integer.parseInt(coordenada[1]) - 1] = matriz02[Integer.parseInt(coordenada[0]) - 1][Integer.parseInt(coordenada[1]) - 1];
             }
-            reiniciar2();
+            if (matriz2[Integer.parseInt(coordenada[0]) - 1][Integer.parseInt(coordenada[1]) - 1].equals("*")) {
+                System.out.println("!!!HAS PERDIDO!!!");
+                System.out.println("Las minas estaban en...");
+                for (int i = 0; i <= 5; i++) {
+                    for (int j = 0; j <= 5; j++) {
+                        System.out.print(matriz02[i][j] + " ");
+
+                    }
+                    System.out.println();
+                }
+                reiniciar2();
+                intermedio();
+
+            } else {
+            }
             intermedio();
-
-        } else {
+        } catch (Exception e) {
+            System.out.println("coordenada invalida");
+            voltear2();
         }
-        intermedio();
-
     }
 
     void experto() {
@@ -296,7 +356,7 @@ public class Principal_201602511 {
 
         for (int i = 0; i <= 7; i++) {
             for (int j = 0; j <= 7; j++) {
-                System.out.print(matriz3[i][j] + "  ");
+                System.out.print(matriz3[i][j] + " ");
 
             }
             System.out.println();
@@ -343,11 +403,12 @@ public class Principal_201602511 {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 matriz03[i][j] = " ";
+
             }
         }
         for (t = 0; t < 12; t++) { // NUMERO DE MINAS
-            int fila = rn.nextInt(7);
-            int columna = rn.nextInt(7);
+            fila = rn.nextInt(7);
+            columna = rn.nextInt(7);
             if (matriz03[fila][columna].equals("*")) {
                 t--;
             }
@@ -359,32 +420,36 @@ public class Principal_201602511 {
 
     private void voltear3() {
         System.out.println("Ingrese una fila , columna");
-        Scanner lector3;
-        lector3 = new Scanner(System.in);
-        String coor = lector3.nextLine();
-        String[] coordenada = coor.split(",");
-        if (coordenada.length != 2) {
-            System.out.println("Ingrese coordenadas validas");
-        } else {
-            matriz3[Integer.parseInt(coordenada[0]) - 1][Integer.parseInt(coordenada[1]) - 1] = matriz03[Integer.parseInt(coordenada[0]) - 1][Integer.parseInt(coordenada[1]) - 1];
-        }
-        if (matriz3[Integer.parseInt(coordenada[0]) - 1][Integer.parseInt(coordenada[1]) - 1].equals("*")) {
-            System.out.println("Has perdido");
-            System.out.println("Las minas estaban en...");
-            for (int i = 0; i <= 5; i++) {
-                for (int j = 0; j <= 5; j++) {
-                    System.out.print(matriz03[i][j] + "  ");
-
-                }
-                System.out.println();
+        try {
+            Scanner lector3;
+            lector3 = new Scanner(System.in);
+            String coor = lector3.nextLine();
+            String[] coordenada = coor.split(",");
+            if (coordenada.length != 2) {
+                System.out.println("Ingrese coordenadas validas");
+            } else {
+                matriz3[Integer.parseInt(coordenada[0]) - 1][Integer.parseInt(coordenada[1]) - 1] = matriz03[Integer.parseInt(coordenada[0]) - 1][Integer.parseInt(coordenada[1]) - 1];
             }
-            reiniciar3();
+            if (matriz3[Integer.parseInt(coordenada[0]) - 1][Integer.parseInt(coordenada[1]) - 1].equals("*")) {
+                System.out.println("!!!HAS PERDIDO!!!");
+                System.out.println("Las minas estaban en...");
+                for (int i = 0; i <= 7; i++) {
+                    for (int j = 0; j <= 7; j++) {
+                        System.out.print(matriz03[i][j] + "  ");
+
+                    }
+                    System.out.println();
+                }
+                reiniciar3();
+                experto();
+
+            } else {
+            }
             experto();
-
-        } else {
+        } catch (Exception e) {
+            System.out.println("coordenada invalida");
+            voltear3();
         }
-        experto();
-
     }
 
 }
