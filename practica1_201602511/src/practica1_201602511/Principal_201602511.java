@@ -180,6 +180,7 @@ public class Principal_201602511 {
         lector1 = new Scanner(System.in);
         String coor = lector1.nextLine();
         String[] coordenada = coor.split(",");
+
         if (coordenada.length != 2) {
             System.out.println("Ingrese coordenadas validas");
         } else {
@@ -307,7 +308,6 @@ public class Principal_201602511 {
                 System.out.println("Inválido");
                 voltear1();
             }
-
         }
 
         principiante();
@@ -414,6 +414,7 @@ public class Principal_201602511 {
         lector2 = new Scanner(System.in);
         String coor = lector2.nextLine();
         String[] coordenada = coor.split(",");
+
         if (coordenada.length != 2) {
             System.out.println("Ingrese coordenadas validas");
         } else {
@@ -427,28 +428,28 @@ public class Principal_201602511 {
                 int i = Integer.parseInt(coordenada[0]) - 1;
                 int j = Integer.parseInt(coordenada[1]) - 1;
 
-                if (this.verificar_si_mina(i, j - 1) == 1) {
+                if (this.verificar_si_mina2(i, j - 1) == 1) {
                     numero_a_mostrar++;
                 }
-                if (this.verificar_si_mina(i, j + 1) == 1) {
+                if (this.verificar_si_mina2(i, j + 1) == 1) {
                     numero_a_mostrar++;
                 }
-                if (this.verificar_si_mina(i + 1, j - 1) == 1) {
+                if (this.verificar_si_mina2(i + 1, j - 1) == 1) {
                     numero_a_mostrar++;
                 }
-                if (this.verificar_si_mina(i + 1, j + 1) == 1) {
+                if (this.verificar_si_mina2(i + 1, j + 1) == 1) {
                     numero_a_mostrar++;
                 }
-                if (this.verificar_si_mina(i - 1, j - 1) == 1) {
+                if (this.verificar_si_mina2(i - 1, j - 1) == 1) {
                     numero_a_mostrar++;
                 }
-                if (this.verificar_si_mina(i - 1, j + 1) == 1) {
+                if (this.verificar_si_mina2(i - 1, j + 1) == 1) {
                     numero_a_mostrar++;
                 }
-                if (this.verificar_si_mina(i - 1, j) == 1) {
+                if (this.verificar_si_mina2(i - 1, j) == 1) {
                     numero_a_mostrar++;
                 }
-                if (this.verificar_si_mina(i + 1, j) == 1) {
+                if (this.verificar_si_mina2(i + 1, j) == 1) {
                     numero_a_mostrar++;
                 }
 
@@ -461,8 +462,9 @@ public class Principal_201602511 {
                     }
                     System.out.println();
                 }
+
                 if (matriz02[Integer.parseInt(coordenada[0]) - 1][Integer.parseInt(coordenada[1]) - 1].equals("*")) {
-                    ganar=0;
+                    ganar = 0;
                     System.out.println("!!!!BOOOOOM HAS PERDIDO!!!!");
                     System.out.println("LAS MINAS ESTABAN EN...");
                     for (int h = 0; h <= 5; h++) {
@@ -471,6 +473,7 @@ public class Principal_201602511 {
                         }
                         System.out.println();
                     }
+
                     System.out.println("LA SOLUCION ERA...");
                     String matriz22[][];
                     matriz22 = new String[6][6];
@@ -509,7 +512,6 @@ public class Principal_201602511 {
                             matriz22[x][y] = Integer.toString(numerito);
 
                         }
-
                     }
                     for (int h = 0; h <= 5; h++) {
                         for (int k = 0; k <= 5; k++) {
@@ -523,10 +525,11 @@ public class Principal_201602511 {
                         }
                         System.out.println();
                     }
+
                     reiniciar2();
                     intermedio();
 
-                }else {
+                } else {
                     ganar += 1;
                 }
                 if (ganar == 28) {
@@ -539,7 +542,6 @@ public class Principal_201602511 {
                 System.out.println("Inválido");
                 voltear2();
             }
-
         }
 
         intermedio();
@@ -660,28 +662,28 @@ public class Principal_201602511 {
                 int i = Integer.parseInt(coordenada[0]) - 1;
                 int j = Integer.parseInt(coordenada[1]) - 1;
 
-                if (this.verificar_si_mina(i, j - 1) == 1) {
+                if (this.verificar_si_mina3(i, j - 1) == 1) {
                     numero_a_mostrar++;
                 }
-                if (this.verificar_si_mina(i, j + 1) == 1) {
+                if (this.verificar_si_mina3(i, j + 1) == 1) {
                     numero_a_mostrar++;
                 }
-                if (this.verificar_si_mina(i + 1, j - 1) == 1) {
+                if (this.verificar_si_mina3(i + 1, j - 1) == 1) {
                     numero_a_mostrar++;
                 }
-                if (this.verificar_si_mina(i + 1, j + 1) == 1) {
+                if (this.verificar_si_mina3(i + 1, j + 1) == 1) {
                     numero_a_mostrar++;
                 }
-                if (this.verificar_si_mina(i - 1, j - 1) == 1) {
+                if (this.verificar_si_mina3(i - 1, j - 1) == 1) {
                     numero_a_mostrar++;
                 }
-                if (this.verificar_si_mina(i - 1, j + 1) == 1) {
+                if (this.verificar_si_mina3(i - 1, j + 1) == 1) {
                     numero_a_mostrar++;
                 }
-                if (this.verificar_si_mina(i - 1, j) == 1) {
+                if (this.verificar_si_mina3(i - 1, j) == 1) {
                     numero_a_mostrar++;
                 }
-                if (this.verificar_si_mina(i + 1, j) == 1) {
+                if (this.verificar_si_mina3(i + 1, j) == 1) {
                     numero_a_mostrar++;
                 }
 
@@ -695,7 +697,7 @@ public class Principal_201602511 {
                     System.out.println();
                 }
                 if (matriz03[Integer.parseInt(coordenada[0]) - 1][Integer.parseInt(coordenada[1]) - 1].equals("*")) {
-                    ganar=0;
+                    ganar = 0;
                     System.out.println("!!!!BOOOOOM HAS PERDIDO!!!!");
                     System.out.println("LAS MINAS ESTABAN EN...");
                     for (int h = 0; h <= 7; h++) {
@@ -759,7 +761,7 @@ public class Principal_201602511 {
                     reiniciar3();
                     experto();
 
-                }else {
+                } else {
                     ganar += 1;
                 }
                 if (ganar == 52) {
