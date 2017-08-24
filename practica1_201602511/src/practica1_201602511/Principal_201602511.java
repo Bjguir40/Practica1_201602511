@@ -17,6 +17,7 @@ public class Principal_201602511 {
     public Principal_201602511() {
         menu1();
     }
+    public static int ganar = 0;
     public int fila;
     public int columna;
     String matriz1[][];
@@ -30,16 +31,14 @@ public class Principal_201602511 {
         reiniciar1();
         reiniciar2();
         reiniciar3();
-        System.out.println("|------------------------------------|");
-        System.out.println("|------------------------------------|");
-        System.out.println("|     BYRON JOSUÉ GÜIR GONZÁLEZ      |");
-        System.out.println("|             201602511              |");
-        System.out.println("|          IPC1 A PRACTICA 1         |");
-        System.out.println("|          !!!BUSCAMINAS!!!          |");
-        System.out.println("|------------------------------------|");
-        System.out.println("|------------------------------------|");
-        System.out.println(" ");
-        System.out.println("Presione enter para continuar");
+        System.out.println("======================================");
+        System.out.println("||----------------------------------||");
+        System.out.println("||    BYRON JOSUÉ GÜIR GONZÁLEZ     ||");
+        System.out.println("||            201602511             ||");
+        System.out.println("||         IPC1 A PRACTICA 1        ||");
+        System.out.println("||         !!!BUSCAMINAS!!!         ||");
+        System.out.println("||----------------------------------||");
+        System.out.println("======================================");
 
         Scanner sc1 = new Scanner(System.in);
         String opcion = sc1.nextLine();
@@ -54,15 +53,15 @@ public class Principal_201602511 {
     }
 
     public void menu2() {
-        System.out.println("-----------------------");
-        System.out.println("     ! BUSCAMINAS !");
-        System.out.println("-----------------------");
+        System.out.println("=======================");
+        System.out.println("    ! BUSCAMINAS !");
+        System.out.println("=======================");
         System.out.println("1. Principiante");
         System.out.println("2. Intermedio");
         System.out.println("3. Experto");
         System.out.println("4. Salir");
         System.out.println(" ");
-        System.out.println("Ingrese opcion");
+        System.out.println("Ingrese opción");
 
         Scanner sc2 = new Scanner(System.in);
         try {
@@ -92,7 +91,6 @@ public class Principal_201602511 {
     }
 
     void principiante() {
-
         System.out.println("NIVEL PRINCIPIANTE");
         for (int i = 0; i <= 3; i++) {
             for (int j = 0; j <= 3; j++) {
@@ -166,8 +164,8 @@ public class Principal_201602511 {
             }
         }
         for (t = 0; t < 4; t++) { // NUMERO DE MINAS
-            fila = rn.nextInt(3);
-            columna = rn.nextInt(3);
+            fila = rn.nextInt(4);
+            columna = rn.nextInt(4);
             if (matriz01[fila][columna].equals("*")) {
                 t--;
             }
@@ -229,8 +227,10 @@ public class Principal_201602511 {
                     }
                     System.out.println();
                 }
+
                 if (matriz01[Integer.parseInt(coordenada[0]) - 1][Integer.parseInt(coordenada[1]) - 1].equals("*")) {
-                    System.out.println("!!!!HAS PERDIDO!!!");
+                    ganar = 0;
+                    System.out.println("!!!!BOOOOOM HAS PERDIDO!!!!");
                     System.out.println("LAS MINAS ESTABAN EN...");
                     for (int h = 0; h <= 3; h++) {
                         for (int k = 0; k <= 3; k++) {
@@ -238,6 +238,7 @@ public class Principal_201602511 {
                         }
                         System.out.println();
                     }
+
                     System.out.println("LA SOLUCION ERA...");
                     String matriz11[][];
                     matriz11 = new String[4][4];
@@ -276,7 +277,6 @@ public class Principal_201602511 {
                             matriz11[x][y] = Integer.toString(numerito);
 
                         }
-
                     }
                     for (int h = 0; h <= 3; h++) {
                         for (int k = 0; k <= 3; k++) {
@@ -290,9 +290,16 @@ public class Principal_201602511 {
                         }
                         System.out.println();
                     }
+
                     reiniciar1();
                     principiante();
 
+                } else {
+                    ganar += 1;
+                }
+                if (ganar == 12) {
+                    System.out.println("!!!FELICIDADES HAS GANADO!!!");
+                    reiniciar1();
                 }
             } else if (respuesta == 0) {
                 voltear1();
@@ -390,8 +397,8 @@ public class Principal_201602511 {
             }
         }
         for (t = 0; t < 8; t++) { // NUMERO DE MINAS
-            fila = rn.nextInt(5);
-            columna = rn.nextInt(5);
+            fila = rn.nextInt(6);
+            columna = rn.nextInt(6);
             if (matriz02[fila][columna].equals("*")) {
                 t--;
             }
@@ -410,7 +417,7 @@ public class Principal_201602511 {
         if (coordenada.length != 2) {
             System.out.println("Ingrese coordenadas validas");
         } else {
-            System.out.println("Usted seleccionó:(" + coordenada[0] + "," + coordenada[1] + ") Presione 1 para aceptar y 0 para cancelar");
+            System.out.println("Usted seleccionó:(" + coordenada[0] + "," + coordenada[1] + ") Presione 1 para aceptar ó 0 para cancelar");
 
             int respuesta = lector2.nextInt();
             if (respuesta == 1) {
@@ -455,7 +462,8 @@ public class Principal_201602511 {
                     System.out.println();
                 }
                 if (matriz02[Integer.parseInt(coordenada[0]) - 1][Integer.parseInt(coordenada[1]) - 1].equals("*")) {
-                    System.out.println("!!!!HAS PERDIDO!!!");
+                    ganar=0;
+                    System.out.println("!!!!BOOOOOM HAS PERDIDO!!!!");
                     System.out.println("LAS MINAS ESTABAN EN...");
                     for (int h = 0; h <= 5; h++) {
                         for (int k = 0; k <= 5; k++) {
@@ -518,6 +526,12 @@ public class Principal_201602511 {
                     reiniciar2();
                     intermedio();
 
+                }else {
+                    ganar += 1;
+                }
+                if (ganar == 28) {
+                    System.out.println("!!!FELICIDADES HAS GANADO!!!");
+                    reiniciar2();
                 }
             } else if (respuesta == 0) {
                 voltear2();
@@ -616,8 +630,8 @@ public class Principal_201602511 {
             }
         }
         for (t = 0; t < 12; t++) { // NUMERO DE MINAS
-            fila = rn.nextInt(7);
-            columna = rn.nextInt(7);
+            fila = rn.nextInt(8);
+            columna = rn.nextInt(8);
             if (matriz03[fila][columna].equals("*")) {
                 t--;
             }
@@ -681,7 +695,8 @@ public class Principal_201602511 {
                     System.out.println();
                 }
                 if (matriz03[Integer.parseInt(coordenada[0]) - 1][Integer.parseInt(coordenada[1]) - 1].equals("*")) {
-                    System.out.println("!!!!HAS PERDIDO!!!");
+                    ganar=0;
+                    System.out.println("!!!!BOOOOOM HAS PERDIDO!!!!");
                     System.out.println("LAS MINAS ESTABAN EN...");
                     for (int h = 0; h <= 7; h++) {
                         for (int k = 0; k <= 7; k++) {
@@ -744,6 +759,12 @@ public class Principal_201602511 {
                     reiniciar3();
                     experto();
 
+                }else {
+                    ganar += 1;
+                }
+                if (ganar == 52) {
+                    System.out.println("!!!FELICIDADES HAS GANADO!!!");
+                    reiniciar3();
                 }
             } else if (respuesta == 0) {
                 voltear3();
@@ -751,7 +772,6 @@ public class Principal_201602511 {
                 System.out.println("Inválido");
                 voltear3();
             }
-
         }
 
         experto();
