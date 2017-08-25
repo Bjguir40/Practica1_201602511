@@ -56,10 +56,10 @@ public class Principal_201602511 {
         System.out.println("=======================");
         System.out.println("    ! BUSCAMINAS !");
         System.out.println("=======================");
-        System.out.println("1. Principiante");
-        System.out.println("2. Intermedio");
-        System.out.println("3. Experto");
-        System.out.println("4. Salir");
+        System.out.println("   1. Principiante");
+        System.out.println("   2. Intermedio");
+        System.out.println("   3. Experto");
+        System.out.println("   4. Salir");
         System.out.println(" ");
         System.out.println("Ingrese opción");
 
@@ -91,7 +91,8 @@ public class Principal_201602511 {
     }
 
     void principiante() {
-        System.out.println("NIVEL PRINCIPIANTE");
+        System.out.println(" ");
+        System.out.println("!!! NIVEL PRINCIPIANTE !!!");
         for (int i = 0; i <= 3; i++) {
             for (int j = 0; j <= 3; j++) {
                 System.out.print(matriz01[i][j] + " ");
@@ -107,7 +108,7 @@ public class Principal_201602511 {
             }
             System.out.println();
         }
-
+        System.out.println(" ");
         System.out.println("Voltear : V");
         System.out.println("Reiniciar : R");
         System.out.println("Salir : S");
@@ -176,142 +177,148 @@ public class Principal_201602511 {
 
     private void voltear1() {
         System.out.println("Ingrese una fila , columna");
-        Scanner lector1;
-        lector1 = new Scanner(System.in);
-        String coor = lector1.nextLine();
-        String[] coordenada = coor.split(",");
+        try {
+            Scanner lector1;
+            lector1 = new Scanner(System.in);
+            String coor = lector1.nextLine();
+            String[] coordenada = coor.split(",");
 
-        if (coordenada.length != 2) {
-            System.out.println("Ingrese coordenadas validas");
-        } else {
-            System.out.println("Usted seleccionó:(" + coordenada[0] + "," + coordenada[1] + ") Presione 1 para aceptar ó 0 para cancelar");
-
-            int respuesta = lector1.nextInt();
-            if (respuesta == 1) {
-                int numero_a_mostrar;
-                numero_a_mostrar = 0;
-
-                int i = Integer.parseInt(coordenada[0]) - 1;
-                int j = Integer.parseInt(coordenada[1]) - 1;
-
-                if (this.verificar_si_mina(i, j - 1) == 1) {
-                    numero_a_mostrar++;
-                }
-                if (this.verificar_si_mina(i, j + 1) == 1) {
-                    numero_a_mostrar++;
-                }
-                if (this.verificar_si_mina(i + 1, j - 1) == 1) {
-                    numero_a_mostrar++;
-                }
-                if (this.verificar_si_mina(i + 1, j + 1) == 1) {
-                    numero_a_mostrar++;
-                }
-                if (this.verificar_si_mina(i - 1, j - 1) == 1) {
-                    numero_a_mostrar++;
-                }
-                if (this.verificar_si_mina(i - 1, j + 1) == 1) {
-                    numero_a_mostrar++;
-                }
-                if (this.verificar_si_mina(i - 1, j) == 1) {
-                    numero_a_mostrar++;
-                }
-                if (this.verificar_si_mina(i + 1, j) == 1) {
-                    numero_a_mostrar++;
-                }
-
-                matriz1[i][j] = Integer.toString(numero_a_mostrar);
-
-                for (int h = 0; h <= 3; h++) {
-                    for (int k = 0; k <= 3; k++) {
-                        System.out.print(matriz1[h][k] + " ");
-
-                    }
-                    System.out.println();
-                }
-
-                if (matriz01[Integer.parseInt(coordenada[0]) - 1][Integer.parseInt(coordenada[1]) - 1].equals("*")) {
-                    ganar = 0;
-                    System.out.println("!!!!BOOOOOM HAS PERDIDO!!!!");
-                    System.out.println("LAS MINAS ESTABAN EN...");
-                    for (int h = 0; h <= 3; h++) {
-                        for (int k = 0; k <= 3; k++) {
-                            System.out.print(matriz01[h][k] + " ");
-                        }
-                        System.out.println();
-                    }
-
-                    System.out.println("LA SOLUCION ERA...");
-                    String matriz11[][];
-                    matriz11 = new String[4][4];
-                    for (int a = 1; a <= 4; a++) {
-                        for (int b = 1; b <= 4; b++) {
-                            int numerito;
-                            numerito = 0;
-                            int x = a - 1;
-                            int y = b - 1;
-
-                            if (this.verificar_si_mina(x, y - 1) == 1) {
-                                numerito++;
-                            }
-                            if (this.verificar_si_mina(x, y + 1) == 1) {
-                                numerito++;
-                            }
-                            if (this.verificar_si_mina(x + 1, y - 1) == 1) {
-                                numerito++;
-                            }
-                            if (this.verificar_si_mina(x + 1, y + 1) == 1) {
-                                numerito++;
-                            }
-                            if (this.verificar_si_mina(x - 1, y - 1) == 1) {
-                                numerito++;
-                            }
-                            if (this.verificar_si_mina(x - 1, y + 1) == 1) {
-                                numerito++;
-                            }
-                            if (this.verificar_si_mina(x - 1, y) == 1) {
-                                numerito++;
-                            }
-                            if (this.verificar_si_mina(x + 1, y) == 1) {
-                                numerito++;
-                            }
-
-                            matriz11[x][y] = Integer.toString(numerito);
-
-                        }
-                    }
-                    for (int h = 0; h <= 3; h++) {
-                        for (int k = 0; k <= 3; k++) {
-                            if (matriz01[h][k] == "*") {
-                                System.out.print(matriz01[h][k] + " ");
-                            } else {
-
-                                System.out.print(matriz11[h][k] + " ");
-                            }
-
-                        }
-                        System.out.println();
-                    }
-
-                    reiniciar1();
-                    principiante();
-
-                } else {
-                    ganar += 1;
-                }
-                if (ganar == 12) {
-                    System.out.println("!!!FELICIDADES HAS GANADO!!!");
-                    reiniciar1();
-                }
-            } else if (respuesta == 0) {
-                voltear1();
+            if (coordenada.length != 2) {
+                System.out.println("Ingrese coordenadas validas");
             } else {
-                System.out.println("Inválido");
-                voltear1();
+                System.out.println("Usted seleccionó:(" + coordenada[0] + "," + coordenada[1] + ") Presione 1 para aceptar ó 0 para cancelar");
+
+                int respuesta = lector1.nextInt();
+                if (respuesta == 1) {
+                    int numero_a_mostrar;
+                    numero_a_mostrar = 0;
+
+                    int i = Integer.parseInt(coordenada[0]) - 1;
+                    int j = Integer.parseInt(coordenada[1]) - 1;
+
+                    if (this.verificar_si_mina(i, j - 1) == 1) {
+                        numero_a_mostrar++;
+                    }
+                    if (this.verificar_si_mina(i, j + 1) == 1) {
+                        numero_a_mostrar++;
+                    }
+                    if (this.verificar_si_mina(i + 1, j - 1) == 1) {
+                        numero_a_mostrar++;
+                    }
+                    if (this.verificar_si_mina(i + 1, j + 1) == 1) {
+                        numero_a_mostrar++;
+                    }
+                    if (this.verificar_si_mina(i - 1, j - 1) == 1) {
+                        numero_a_mostrar++;
+                    }
+                    if (this.verificar_si_mina(i - 1, j + 1) == 1) {
+                        numero_a_mostrar++;
+                    }
+                    if (this.verificar_si_mina(i - 1, j) == 1) {
+                        numero_a_mostrar++;
+                    }
+                    if (this.verificar_si_mina(i + 1, j) == 1) {
+                        numero_a_mostrar++;
+                    }
+
+                    matriz1[i][j] = Integer.toString(numero_a_mostrar);
+
+                    for (int h = 0; h <= 3; h++) {
+                        for (int k = 0; k <= 3; k++) {
+                            System.out.print(matriz1[h][k] + " ");
+
+                        }
+                        System.out.println();
+                    }
+
+                    if (matriz01[Integer.parseInt(coordenada[0]) - 1][Integer.parseInt(coordenada[1]) - 1].equals("*")) {
+                        ganar = 0;
+                        System.out.println("!!!!BOOOOOM HAS PERDIDO!!!!");
+                        System.out.println(" ");
+                        System.out.println("LAS MINAS ESTABAN EN...");
+                        for (int h = 0; h <= 3; h++) {
+                            for (int k = 0; k <= 3; k++) {
+                                System.out.print(matriz01[h][k] + " ");
+                            }
+                            System.out.println();
+                        }
+
+                        System.out.println("LA SOLUCION ERA...");
+                        String matriz11[][];
+                        matriz11 = new String[4][4];
+                        for (int a = 1; a <= 4; a++) {
+                            for (int b = 1; b <= 4; b++) {
+                                int numerito;
+                                numerito = 0;
+                                int x = a - 1;
+                                int y = b - 1;
+
+                                if (this.verificar_si_mina(x, y - 1) == 1) {
+                                    numerito++;
+                                }
+                                if (this.verificar_si_mina(x, y + 1) == 1) {
+                                    numerito++;
+                                }
+                                if (this.verificar_si_mina(x + 1, y - 1) == 1) {
+                                    numerito++;
+                                }
+                                if (this.verificar_si_mina(x + 1, y + 1) == 1) {
+                                    numerito++;
+                                }
+                                if (this.verificar_si_mina(x - 1, y - 1) == 1) {
+                                    numerito++;
+                                }
+                                if (this.verificar_si_mina(x - 1, y + 1) == 1) {
+                                    numerito++;
+                                }
+                                if (this.verificar_si_mina(x - 1, y) == 1) {
+                                    numerito++;
+                                }
+                                if (this.verificar_si_mina(x + 1, y) == 1) {
+                                    numerito++;
+                                }
+
+                                matriz11[x][y] = Integer.toString(numerito);
+
+                            }
+                        }
+                        for (int h = 0; h <= 3; h++) {
+                            for (int k = 0; k <= 3; k++) {
+                                if (matriz01[h][k] == "*") {
+                                    System.out.print(matriz01[h][k] + " ");
+                                } else {
+
+                                    System.out.print(matriz11[h][k] + " ");
+                                }
+
+                            }
+                            System.out.println();
+                        }
+                        System.out.println(" ");
+                        reiniciar1();
+                        principiante();
+
+                    } else {
+                        ganar += 1;
+                    }
+                    if (ganar == 12) {
+                        System.out.println("!!!FELICIDADES HAS GANADO!!!");
+                        System.out.println(" ");
+                        reiniciar1();
+                    }
+                } else if (respuesta == 0) {
+                    voltear1();
+                } else {
+                    System.out.println("Inválido");
+                    voltear1();
+                }
             }
+
+            principiante();
+        } catch (Exception e) {
+            System.out.println("Opción no valida");
+            voltear1();
         }
-
-        principiante();
-
     }
 
     int verificar_si_mina(int i, int j) {
@@ -326,8 +333,8 @@ public class Principal_201602511 {
     }
 
     void intermedio() {
-
-        System.out.println("NIVEL INTERMEDIO");
+        System.out.println(" ");
+        System.out.println("!!! NIVEL INTERMEDIO !!!");
         for (int i = 0; i <= 5; i++) {
             for (int j = 0; j <= 5; j++) {
                 System.out.print(matriz02[i][j] + " ");
@@ -343,7 +350,7 @@ public class Principal_201602511 {
             }
             System.out.println();
         }
-
+        System.out.println(" ");
         System.out.println("Voltear : V");
         System.out.println("Reiniciar : R");
         System.out.println("Salir : S");
@@ -410,142 +417,148 @@ public class Principal_201602511 {
 
     private void voltear2() {
         System.out.println("Ingrese una fila , columna");
-        Scanner lector2;
-        lector2 = new Scanner(System.in);
-        String coor = lector2.nextLine();
-        String[] coordenada = coor.split(",");
+        try {
+            Scanner lector2;
+            lector2 = new Scanner(System.in);
+            String coor = lector2.nextLine();
+            String[] coordenada = coor.split(",");
 
-        if (coordenada.length != 2) {
-            System.out.println("Ingrese coordenadas validas");
-        } else {
-            System.out.println("Usted seleccionó:(" + coordenada[0] + "," + coordenada[1] + ") Presione 1 para aceptar ó 0 para cancelar");
-
-            int respuesta = lector2.nextInt();
-            if (respuesta == 1) {
-                int numero_a_mostrar;
-                numero_a_mostrar = 0;
-
-                int i = Integer.parseInt(coordenada[0]) - 1;
-                int j = Integer.parseInt(coordenada[1]) - 1;
-
-                if (this.verificar_si_mina2(i, j - 1) == 1) {
-                    numero_a_mostrar++;
-                }
-                if (this.verificar_si_mina2(i, j + 1) == 1) {
-                    numero_a_mostrar++;
-                }
-                if (this.verificar_si_mina2(i + 1, j - 1) == 1) {
-                    numero_a_mostrar++;
-                }
-                if (this.verificar_si_mina2(i + 1, j + 1) == 1) {
-                    numero_a_mostrar++;
-                }
-                if (this.verificar_si_mina2(i - 1, j - 1) == 1) {
-                    numero_a_mostrar++;
-                }
-                if (this.verificar_si_mina2(i - 1, j + 1) == 1) {
-                    numero_a_mostrar++;
-                }
-                if (this.verificar_si_mina2(i - 1, j) == 1) {
-                    numero_a_mostrar++;
-                }
-                if (this.verificar_si_mina2(i + 1, j) == 1) {
-                    numero_a_mostrar++;
-                }
-
-                matriz2[i][j] = Integer.toString(numero_a_mostrar);
-
-                for (int h = 0; h <= 5; h++) {
-                    for (int k = 0; k <= 5; k++) {
-                        System.out.print(matriz2[h][k] + " ");
-
-                    }
-                    System.out.println();
-                }
-
-                if (matriz02[Integer.parseInt(coordenada[0]) - 1][Integer.parseInt(coordenada[1]) - 1].equals("*")) {
-                    ganar = 0;
-                    System.out.println("!!!!BOOOOOM HAS PERDIDO!!!!");
-                    System.out.println("LAS MINAS ESTABAN EN...");
-                    for (int h = 0; h <= 5; h++) {
-                        for (int k = 0; k <= 5; k++) {
-                            System.out.print(matriz02[h][k] + " ");
-                        }
-                        System.out.println();
-                    }
-
-                    System.out.println("LA SOLUCION ERA...");
-                    String matriz22[][];
-                    matriz22 = new String[6][6];
-                    for (int a = 1; a <= 6; a++) {
-                        for (int b = 1; b <= 6; b++) {
-                            int numerito;
-                            numerito = 0;
-                            int x = a - 1;
-                            int y = b - 1;
-
-                            if (this.verificar_si_mina2(x, y - 1) == 1) {
-                                numerito++;
-                            }
-                            if (this.verificar_si_mina2(x, y + 1) == 1) {
-                                numerito++;
-                            }
-                            if (this.verificar_si_mina2(x + 1, y - 1) == 1) {
-                                numerito++;
-                            }
-                            if (this.verificar_si_mina2(x + 1, y + 1) == 1) {
-                                numerito++;
-                            }
-                            if (this.verificar_si_mina2(x - 1, y - 1) == 1) {
-                                numerito++;
-                            }
-                            if (this.verificar_si_mina2(x - 1, y + 1) == 1) {
-                                numerito++;
-                            }
-                            if (this.verificar_si_mina2(x - 1, y) == 1) {
-                                numerito++;
-                            }
-                            if (this.verificar_si_mina2(x + 1, y) == 1) {
-                                numerito++;
-                            }
-
-                            matriz22[x][y] = Integer.toString(numerito);
-
-                        }
-                    }
-                    for (int h = 0; h <= 5; h++) {
-                        for (int k = 0; k <= 5; k++) {
-                            if (matriz02[h][k] == "*") {
-                                System.out.print(matriz02[h][k] + " ");
-                            } else {
-
-                                System.out.print(matriz22[h][k] + " ");
-                            }
-
-                        }
-                        System.out.println();
-                    }
-
-                    reiniciar2();
-                    intermedio();
-
-                } else {
-                    ganar += 1;
-                }
-                if (ganar == 28) {
-                    System.out.println("!!!FELICIDADES HAS GANADO!!!");
-                    reiniciar2();
-                }
-            } else if (respuesta == 0) {
-                voltear2();
+            if (coordenada.length != 2) {
+                System.out.println("Ingrese coordenadas validas");
             } else {
-                System.out.println("Inválido");
-                voltear2();
+                System.out.println("Usted seleccionó:(" + coordenada[0] + "," + coordenada[1] + ") Presione 1 para aceptar ó 0 para cancelar");
+
+                int respuesta = lector2.nextInt();
+                if (respuesta == 1) {
+                    int numero_a_mostrar;
+                    numero_a_mostrar = 0;
+
+                    int i = Integer.parseInt(coordenada[0]) - 1;
+                    int j = Integer.parseInt(coordenada[1]) - 1;
+
+                    if (this.verificar_si_mina2(i, j - 1) == 1) {
+                        numero_a_mostrar++;
+                    }
+                    if (this.verificar_si_mina2(i, j + 1) == 1) {
+                        numero_a_mostrar++;
+                    }
+                    if (this.verificar_si_mina2(i + 1, j - 1) == 1) {
+                        numero_a_mostrar++;
+                    }
+                    if (this.verificar_si_mina2(i + 1, j + 1) == 1) {
+                        numero_a_mostrar++;
+                    }
+                    if (this.verificar_si_mina2(i - 1, j - 1) == 1) {
+                        numero_a_mostrar++;
+                    }
+                    if (this.verificar_si_mina2(i - 1, j + 1) == 1) {
+                        numero_a_mostrar++;
+                    }
+                    if (this.verificar_si_mina2(i - 1, j) == 1) {
+                        numero_a_mostrar++;
+                    }
+                    if (this.verificar_si_mina2(i + 1, j) == 1) {
+                        numero_a_mostrar++;
+                    }
+
+                    matriz2[i][j] = Integer.toString(numero_a_mostrar);
+
+                    for (int h = 0; h <= 5; h++) {
+                        for (int k = 0; k <= 5; k++) {
+                            System.out.print(matriz2[h][k] + " ");
+
+                        }
+                        System.out.println();
+                    }
+
+                    if (matriz02[Integer.parseInt(coordenada[0]) - 1][Integer.parseInt(coordenada[1]) - 1].equals("*")) {
+                        ganar = 0;
+                        System.out.println("!!!!BOOOOOM HAS PERDIDO!!!!");
+                        System.out.println(" ");
+                        System.out.println("LAS MINAS ESTABAN EN...");
+                        for (int h = 0; h <= 5; h++) {
+                            for (int k = 0; k <= 5; k++) {
+                                System.out.print(matriz02[h][k] + " ");
+                            }
+                            System.out.println();
+                        }
+
+                        System.out.println("LA SOLUCION ERA...");
+                        String matriz22[][];
+                        matriz22 = new String[6][6];
+                        for (int a = 1; a <= 6; a++) {
+                            for (int b = 1; b <= 6; b++) {
+                                int numerito;
+                                numerito = 0;
+                                int x = a - 1;
+                                int y = b - 1;
+
+                                if (this.verificar_si_mina2(x, y - 1) == 1) {
+                                    numerito++;
+                                }
+                                if (this.verificar_si_mina2(x, y + 1) == 1) {
+                                    numerito++;
+                                }
+                                if (this.verificar_si_mina2(x + 1, y - 1) == 1) {
+                                    numerito++;
+                                }
+                                if (this.verificar_si_mina2(x + 1, y + 1) == 1) {
+                                    numerito++;
+                                }
+                                if (this.verificar_si_mina2(x - 1, y - 1) == 1) {
+                                    numerito++;
+                                }
+                                if (this.verificar_si_mina2(x - 1, y + 1) == 1) {
+                                    numerito++;
+                                }
+                                if (this.verificar_si_mina2(x - 1, y) == 1) {
+                                    numerito++;
+                                }
+                                if (this.verificar_si_mina2(x + 1, y) == 1) {
+                                    numerito++;
+                                }
+
+                                matriz22[x][y] = Integer.toString(numerito);
+
+                            }
+                        }
+                        for (int h = 0; h <= 5; h++) {
+                            for (int k = 0; k <= 5; k++) {
+                                if (matriz02[h][k] == "*") {
+                                    System.out.print(matriz02[h][k] + " ");
+                                } else {
+
+                                    System.out.print(matriz22[h][k] + " ");
+                                }
+
+                            }
+                            System.out.println();
+                        }
+                        System.out.println(" ");
+                        reiniciar2();
+                        intermedio();
+
+                    } else {
+                        ganar += 1;
+                    }
+                    if (ganar == 28) {
+                        System.out.println("!!!FELICIDADES HAS GANADO!!!");
+                        System.out.println(" ");
+                        reiniciar2();
+                    }
+                } else if (respuesta == 0) {
+                    voltear2();
+                } else {
+                    System.out.println("Inválido");
+                    voltear2();
+                }
             }
+
+            intermedio();
+        } catch (Exception e) {
+            System.out.println("Opción no valida");
+            voltear2();
         }
-
-        intermedio();
-
     }
 
     int verificar_si_mina2(int i, int j) {
@@ -560,7 +573,8 @@ public class Principal_201602511 {
     }
 
     void experto() {
-        System.out.println("NIVEL EXPERTO");
+        System.out.println(" ");
+        System.out.println("!!! NIVEL EXPERTO !!!");
         for (int i = 0; i <= 7; i++) {
             for (int j = 0; j <= 7; j++) {
                 System.out.print(matriz03[i][j] + " ");
@@ -576,7 +590,7 @@ public class Principal_201602511 {
             }
             System.out.println();
         }
-
+        System.out.println(" ");
         System.out.println("Voltear : V");
         System.out.println("Reiniciar : R");
         System.out.println("Salir : S");
@@ -645,139 +659,146 @@ public class Principal_201602511 {
 
     private void voltear3() {
         System.out.println("Ingrese una fila , columna");
-        Scanner lector3;
-        lector3 = new Scanner(System.in);
-        String coor = lector3.nextLine();
-        String[] coordenada = coor.split(",");
-        if (coordenada.length != 2) {
-            System.out.println("Ingrese coordenadas validas");
-        } else {
-            System.out.println("Usted seleccionó:(" + coordenada[0] + "," + coordenada[1] + ") Presione 1 para aceptar ó 0 para cancelar");
-
-            int respuesta = lector3.nextInt();
-            if (respuesta == 1) {
-                int numero_a_mostrar;
-                numero_a_mostrar = 0;
-
-                int i = Integer.parseInt(coordenada[0]) - 1;
-                int j = Integer.parseInt(coordenada[1]) - 1;
-
-                if (this.verificar_si_mina3(i, j - 1) == 1) {
-                    numero_a_mostrar++;
-                }
-                if (this.verificar_si_mina3(i, j + 1) == 1) {
-                    numero_a_mostrar++;
-                }
-                if (this.verificar_si_mina3(i + 1, j - 1) == 1) {
-                    numero_a_mostrar++;
-                }
-                if (this.verificar_si_mina3(i + 1, j + 1) == 1) {
-                    numero_a_mostrar++;
-                }
-                if (this.verificar_si_mina3(i - 1, j - 1) == 1) {
-                    numero_a_mostrar++;
-                }
-                if (this.verificar_si_mina3(i - 1, j + 1) == 1) {
-                    numero_a_mostrar++;
-                }
-                if (this.verificar_si_mina3(i - 1, j) == 1) {
-                    numero_a_mostrar++;
-                }
-                if (this.verificar_si_mina3(i + 1, j) == 1) {
-                    numero_a_mostrar++;
-                }
-
-                matriz3[i][j] = Integer.toString(numero_a_mostrar);
-
-                for (int h = 0; h <= 7; h++) {
-                    for (int k = 0; k <= 7; k++) {
-                        System.out.print(matriz3[h][k] + " ");
-
-                    }
-                    System.out.println();
-                }
-                if (matriz03[Integer.parseInt(coordenada[0]) - 1][Integer.parseInt(coordenada[1]) - 1].equals("*")) {
-                    ganar = 0;
-                    System.out.println("!!!!BOOOOOM HAS PERDIDO!!!!");
-                    System.out.println("LAS MINAS ESTABAN EN...");
-                    for (int h = 0; h <= 7; h++) {
-                        for (int k = 0; k <= 7; k++) {
-                            System.out.print(matriz03[h][k] + " ");
-                        }
-                        System.out.println();
-                    }
-                    System.out.println("LA SOLUCION ERA...");
-                    String matriz33[][];
-                    matriz33 = new String[8][8];
-                    for (int a = 1; a <= 8; a++) {
-                        for (int b = 1; b <= 8; b++) {
-                            int numerito;
-                            numerito = 0;
-                            int x = a - 1;
-                            int y = b - 1;
-
-                            if (this.verificar_si_mina3(x, y - 1) == 1) {
-                                numerito++;
-                            }
-                            if (this.verificar_si_mina3(x, y + 1) == 1) {
-                                numerito++;
-                            }
-                            if (this.verificar_si_mina3(x + 1, y - 1) == 1) {
-                                numerito++;
-                            }
-                            if (this.verificar_si_mina3(x + 1, y + 1) == 1) {
-                                numerito++;
-                            }
-                            if (this.verificar_si_mina3(x - 1, y - 1) == 1) {
-                                numerito++;
-                            }
-                            if (this.verificar_si_mina3(x - 1, y + 1) == 1) {
-                                numerito++;
-                            }
-                            if (this.verificar_si_mina3(x - 1, y) == 1) {
-                                numerito++;
-                            }
-                            if (this.verificar_si_mina3(x + 1, y) == 1) {
-                                numerito++;
-                            }
-
-                            matriz33[x][y] = Integer.toString(numerito);
-
-                        }
-
-                    }
-                    for (int h = 0; h <= 7; h++) {
-                        for (int k = 0; k <= 7; k++) {
-                            if (matriz03[h][k] == "*") {
-                                System.out.print(matriz03[h][k] + " ");
-                            } else {
-
-                                System.out.print(matriz33[h][k] + " ");
-                            }
-
-                        }
-                        System.out.println();
-                    }
-                    reiniciar3();
-                    experto();
-
-                } else {
-                    ganar += 1;
-                }
-                if (ganar == 52) {
-                    System.out.println("!!!FELICIDADES HAS GANADO!!!");
-                    reiniciar3();
-                }
-            } else if (respuesta == 0) {
-                voltear3();
+        try {
+            Scanner lector3;
+            lector3 = new Scanner(System.in);
+            String coor = lector3.nextLine();
+            String[] coordenada = coor.split(",");
+            if (coordenada.length != 2) {
+                System.out.println("Ingrese coordenadas validas");
             } else {
-                System.out.println("Inválido");
-                voltear3();
+                System.out.println("Usted seleccionó:(" + coordenada[0] + "," + coordenada[1] + ") Presione 1 para aceptar ó 0 para cancelar");
+
+                int respuesta = lector3.nextInt();
+                if (respuesta == 1) {
+                    int numero_a_mostrar;
+                    numero_a_mostrar = 0;
+
+                    int i = Integer.parseInt(coordenada[0]) - 1;
+                    int j = Integer.parseInt(coordenada[1]) - 1;
+
+                    if (this.verificar_si_mina3(i, j - 1) == 1) {
+                        numero_a_mostrar++;
+                    }
+                    if (this.verificar_si_mina3(i, j + 1) == 1) {
+                        numero_a_mostrar++;
+                    }
+                    if (this.verificar_si_mina3(i + 1, j - 1) == 1) {
+                        numero_a_mostrar++;
+                    }
+                    if (this.verificar_si_mina3(i + 1, j + 1) == 1) {
+                        numero_a_mostrar++;
+                    }
+                    if (this.verificar_si_mina3(i - 1, j - 1) == 1) {
+                        numero_a_mostrar++;
+                    }
+                    if (this.verificar_si_mina3(i - 1, j + 1) == 1) {
+                        numero_a_mostrar++;
+                    }
+                    if (this.verificar_si_mina3(i - 1, j) == 1) {
+                        numero_a_mostrar++;
+                    }
+                    if (this.verificar_si_mina3(i + 1, j) == 1) {
+                        numero_a_mostrar++;
+                    }
+
+                    matriz3[i][j] = Integer.toString(numero_a_mostrar);
+
+                    for (int h = 0; h <= 7; h++) {
+                        for (int k = 0; k <= 7; k++) {
+                            System.out.print(matriz3[h][k] + " ");
+
+                        }
+                        System.out.println();
+                    }
+                    if (matriz03[Integer.parseInt(coordenada[0]) - 1][Integer.parseInt(coordenada[1]) - 1].equals("*")) {
+                        ganar = 0;
+                        System.out.println("!!!!BOOOOOM HAS PERDIDO!!!!");
+                        System.out.println(" ");
+                        System.out.println("LAS MINAS ESTABAN EN...");
+                        for (int h = 0; h <= 7; h++) {
+                            for (int k = 0; k <= 7; k++) {
+                                System.out.print(matriz03[h][k] + " ");
+                            }
+                            System.out.println();
+                        }
+                        System.out.println("LA SOLUCION ERA...");
+                        String matriz33[][];
+                        matriz33 = new String[8][8];
+                        for (int a = 1; a <= 8; a++) {
+                            for (int b = 1; b <= 8; b++) {
+                                int numerito;
+                                numerito = 0;
+                                int x = a - 1;
+                                int y = b - 1;
+
+                                if (this.verificar_si_mina3(x, y - 1) == 1) {
+                                    numerito++;
+                                }
+                                if (this.verificar_si_mina3(x, y + 1) == 1) {
+                                    numerito++;
+                                }
+                                if (this.verificar_si_mina3(x + 1, y - 1) == 1) {
+                                    numerito++;
+                                }
+                                if (this.verificar_si_mina3(x + 1, y + 1) == 1) {
+                                    numerito++;
+                                }
+                                if (this.verificar_si_mina3(x - 1, y - 1) == 1) {
+                                    numerito++;
+                                }
+                                if (this.verificar_si_mina3(x - 1, y + 1) == 1) {
+                                    numerito++;
+                                }
+                                if (this.verificar_si_mina3(x - 1, y) == 1) {
+                                    numerito++;
+                                }
+                                if (this.verificar_si_mina3(x + 1, y) == 1) {
+                                    numerito++;
+                                }
+
+                                matriz33[x][y] = Integer.toString(numerito);
+
+                            }
+
+                        }
+                        for (int h = 0; h <= 7; h++) {
+                            for (int k = 0; k <= 7; k++) {
+                                if (matriz03[h][k] == "*") {
+                                    System.out.print(matriz03[h][k] + " ");
+                                } else {
+
+                                    System.out.print(matriz33[h][k] + " ");
+                                }
+
+                            }
+                            System.out.println();
+                        }
+                        System.out.println(" ");
+                        reiniciar3();
+                        experto();
+
+                    } else {
+                        ganar += 1;
+                    }
+                    if (ganar == 52) {
+                        System.out.println("!!!FELICIDADES HAS GANADO!!!");
+                        System.out.println(" ");
+                        reiniciar3();
+                    }
+                } else if (respuesta == 0) {
+                    voltear3();
+                } else {
+                    System.out.println("Inválido");
+                    voltear3();
+                }
             }
+
+            experto();
+        } catch (Exception e) {
+            System.out.println("Opción no valida");
+            voltear3();
         }
-
-        experto();
-
     }
 
     int verificar_si_mina3(int i, int j) {
